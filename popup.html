@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Provera teksta</title>
+</head>
+<body>
+  <h1>Provera teksta na ćirilici</h1>
+  <button id="check">Proveri stranicu</button>
+  <script>
+    document.getElementById("check").addEventListener("click", () => {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        chrome.scripting.executeScript({
+          target: { tabId: tabs[0].id },
+          func: () => {
+            // Ponovo pokreće proveru iz content.js
+            highlightInvalidWords();
+          },
+        });
+      });
+    });
+  </script>
+</body>
+</html>

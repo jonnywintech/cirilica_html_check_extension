@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "Provera teksta na ćirilici",
+    "version": "1.0",
+    "description": "Proverava tekst na ćirilici i obeležava nepravilne reči.",
+    "permissions": ["activeTab", "scripting"],
+    "host_permissions": ["<all_urls>"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ],
+    "action": {
+      "default_title": "Provera teksta",
+      "default_popup": "popup.html"
+    }
+  }
+  
