@@ -23,13 +23,29 @@ function isWordValid(word) {
 // Funkcija za obeležavanje nepravilnih reči
 function highlightInvalidWords() {
   console.log("Pokrenuto obeležavanje nepravilnih reči.");
-  const regex = /[А-Яа-я]+/g; // Regularni izraz za pronalaženje ćiriličnih reči
+  // Velika slova srpske ćirilice
+const uppercaseSerbianLetters = [
+  'А', 'Б', 'В', 'Г', 'Д', 'Ђ', 'Е', 'Ж', 'З', 'И', 'Ј', 'К', 'Л', 'Љ', 'М', 'Н', 'Њ', 'О', 'П', 'Р', 'С', 'Т', 'Ћ', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Џ', 'Ш'
+];
+
+// Mala slova srpske ćirilice
+const lowercaseSerbianLetters = [
+  'а', 'б', 'в', 'г', 'д', 'ђ', 'е', 'ж', 'з', 'и', 'ј', 'к', 'л', 'љ', 'м', 'н', 'њ', 'о', 'п', 'р', 'с', 'т', 'ћ', 'у', 'ф', 'х', 'ц', 'ч', 'џ', 'ш'
+];
+
+// Napravimo regex koji će odgovarati svim tim slovima
+const uppercaseRegex = uppercaseSerbianLetters.join('');
+const lowercaseRegex = lowercaseSerbianLetters.join('');
+
+// Kombinovano regularno izraz za pronalaženje reči u tekstu
+const regex = new RegExp(`[${uppercaseRegex}${lowercaseRegex}]+`, 'g');
   const elements = document.body.querySelectorAll("*:not(script):not(style)"); // Selektuj sve elemente osim <script> i <style>
 
   elements.forEach((element) => {
     if (element.children.length === 0) { // Proverava samo tekstualne čvorove
       const originalText = element.innerText; // Učitaj samo tekst, bez HTML-a
       if(originalText === undefined){
+        console.log('undefined', element);
         return;
       }
       const updatedText = originalText.replace(regex, (word) => {
