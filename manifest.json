@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Provera teksta na ćirilici",
-    "version": "1.0",
+    "version": "0.1",
     "description": "Proverava tekst na ćirilici i obeležava nepravilne reči.",
     "permissions": ["activeTab", "scripting"],
     "host_permissions": ["<all_urls>"],
@@ -15,8 +15,13 @@
       }
     ],
     "action": {
-      "default_title": "Provera teksta",
-      "default_popup": "popup.html"
-    }
+        "default_popup": "popup.html"
+      },
+    "web_accessible_resources": [
+        {
+          "resources": ["sr.dic"],
+          "matches": ["<all_urls>"]
+        }
+      ]
   }
   

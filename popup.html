@@ -7,18 +7,6 @@
 <body>
   <h1>Provera teksta na ćirilici</h1>
   <button id="check">Proveri stranicu</button>
-  <script>
-    document.getElementById("check").addEventListener("click", () => {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.scripting.executeScript({
-          target: { tabId: tabs[0].id },
-          func: () => {
-            // Ponovo pokreće proveru iz content.js
-            highlightInvalidWords();
-          },
-        });
-      });
-    });
-  </script>
+  <script src="popup.js"></script>
 </body>
 </html>
